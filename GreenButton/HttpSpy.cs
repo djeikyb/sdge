@@ -121,7 +121,7 @@ public class HttpSpy : DelegatingHandler
 
         // line 2..n: User-Agent: HTTPie/2.5.0
         // need to convert to a list like for the request side
-        var headers = new SortedSet<(string Key, string? Value)>();
+        var headers = new List<(string Key, string? Value)>();
         foreach (var (k, values) in msg.Headers)
         {
             foreach (var v in values)
@@ -137,6 +137,14 @@ public class HttpSpy : DelegatingHandler
                 headers.Add((k, v));
             }
         }
+
+        headers.Sort((a, b) =>
+        {
+            var compareKey = string.CompareOrdinal(a.Key, b.Key);
+            return compareKey == 0
+                ? string.CompareOrdinal(a.Value, b.Value)
+                : compareKey;
+        });
 
         foreach (var h in headers)
         {
