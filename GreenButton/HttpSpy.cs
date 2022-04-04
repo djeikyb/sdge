@@ -1,6 +1,5 @@
 using System.Net.Mime;
 using System.Text;
-using Microsoft.Extensions.Logging;
 
 namespace GreenButton;
 
@@ -107,7 +106,10 @@ public class HttpSpy : DelegatingHandler
         return s;
     }
 
-    private static async Task<StringBuilder> Build(HttpResponseMessage msg, CancellationToken ct = default)
+    private static async Task<StringBuilder> Build(
+        HttpResponseMessage msg,
+        CancellationToken ct = default
+    )
     {
         var s = new StringBuilder();
 
