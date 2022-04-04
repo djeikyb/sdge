@@ -59,7 +59,7 @@ public class HttpSpy : DelegatingHandler
         s.Append("\n");
 
         // line 2..n: User-Agent: HTTPie/2.5.0
-        var headers = new List<(string Key, string Value)>();
+        var headers = new List<(string Key, string? Value)>();
         foreach (var (k, values) in request.Headers)
         {
             foreach (var v in values)
@@ -121,7 +121,7 @@ public class HttpSpy : DelegatingHandler
 
         // line 2..n: User-Agent: HTTPie/2.5.0
         // need to convert to a list like for the request side
-        var headers = new SortedSet<(string Key, string Value)>();
+        var headers = new SortedSet<(string Key, string? Value)>();
         foreach (var (k, values) in msg.Headers)
         {
             foreach (var v in values)
