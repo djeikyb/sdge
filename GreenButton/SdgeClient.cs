@@ -108,7 +108,7 @@ public class SdgeClient
     )
     {
         var meterQuery = new MeterQuery(
-            meterNumer: meterNumer,
+            meterNumber: meterNumer,
             fromDate: from.ToString("d"),
             toDate: to.ToString("d"),
             downloadType: format switch
@@ -166,8 +166,8 @@ public class SdgeClient
 
 class MeterQuery
 {
-    [JsonPropertyName("MeterNumer")]
-    public string MeterNumer { get; set; } // typo is from sdge api 😭
+    [JsonPropertyName("MeterNumer")] // typo is from sdge api 😭
+    public string MeterNumber { get; set; }
 
     /// <summary>
     /// Format mm/dd/yyyy, ie 2022-04-01 as 01/04/2022
@@ -184,9 +184,9 @@ class MeterQuery
     [JsonPropertyName("DownloadType")]
     public string DownloadType { get; set; }
 
-    public MeterQuery(string meterNumer, string fromDate, string toDate, string downloadType)
+    public MeterQuery(string meterNumber, string fromDate, string toDate, string downloadType)
     {
-        MeterNumer = meterNumer;
+        MeterNumber = meterNumber;
         FromDate = fromDate;
         ToDate = toDate;
         DownloadType = downloadType;
